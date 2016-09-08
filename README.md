@@ -52,6 +52,11 @@ $ git clone https://github.com/mazdader/catstricity-deploy.git
 * Put your Private SSH key into repository root.
 * Put your Ansible playbook inventory file into repository root.
 
+### Prepare configuration file
+
+Edit _app/app/settings.py_ configuration file - set proper value for `ANSIBLE_USERNAME` variable:
+* `ANSIBLE_USERNAME`: the username that you want to log in to your servers (default - `ec2-user`);
+
 ### Build Docker image
 
 ```bash
