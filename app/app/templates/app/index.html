@@ -1,0 +1,61 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+{% if host_list %}
+    <div class="row">
+        {% for key in sorted_keys %}
+        <div class="col-md-4">
+            <table width="40%" class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th colspan="3">[ {{ key }} ]</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for group, hosts in host_list.items %}
+                {% if group == key %}
+                {% for host in hosts %}
+                <tr>
+                    <td>
+                        <a href="{% url 'run_ansible' host %}">{{ host }}</a><br />
+                    </td>
+                    <td>
+                        <a href="{% url 'run_ansible' host %}">Run</a><br />
+                    </td>
+                    <td>
+                        <a href="{% url 'view_results' host %}">View results</a><br />
+                    </td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No hosts available.</p>
+{% endif %}
+<hr /><hr /><br />
+<div>
+    <table width="40%" class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Currently running tasks:</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for task in running_tasks %}
+        <tr>
+            <td>
+                <a href="{% url 'view_results' task.server_id %}">{{ task.server_id }}</a><br />
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}
