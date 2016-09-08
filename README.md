@@ -29,7 +29,7 @@ $ git clone https://github.com/mazdader/catstricity-deploy.git
 Edit _catstricity-deploy/app/app/settings.py_ configuration file - set proper values for `ANSIBLE_HOSTS_FILE`, `ANSIBLE_USERNAME`, `SSH_PRIVATE_KEY_PATH` variables:
 * `ANSIBLE_HOSTS_FILE`: path to your Ansible inventory file (see example _hosts_sample_);
 * `ANSIBLE_USERNAME`: the username that you want to log in to your servers (default - `ec2-user`);
-* `SSH_PRIVATE_KEY_PATH`: absolute path tou you Private SSH key (defaults to `$HOME/.ssh/id_rsa`).
+* `SSH_PRIVATE_KEY_PATH`: absolute path tou your Private SSH key (defaults to `$HOME/.ssh/id_rsa`).
 
 ### Run the application
 ```bash
