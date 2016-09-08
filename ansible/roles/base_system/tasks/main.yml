@@ -1,0 +1,13 @@
+---
+- name: Installing base software
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+  - "{{ base_packages_list }}"
+
+- name: Installing needed dependencies
+  apt: name={{ item }} state=present update_cache=yes
+  with_url:
+  - "{{ system_requirements_url }}"
+  when: item != ''
+
+

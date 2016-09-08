@@ -1,0 +1,21 @@
+#####################################################################################################
+#ansible_managed_str
+#####################################################################################################
+#
+#
+WSGIScriptAlias / {{ app_root }}/catstricity/catstricity/wsgi.py
+WSGIPythonPath {{ app_root }}/catstricity
+
+<Directory {{ app_root }}/catstricity/catstricity>
+	<Files wsgi.py>
+		Require all granted
+	</Files>
+</Directory>
+
+Alias /media/ {{ app_root }}/catstricity/catstricity/media/
+
+<Directory {{ app_root }}/catstricity/catstricity/media>
+	Require all granted
+</Directory>
+
+

@@ -1,0 +1,30 @@
+---
+- name: Cloning Git repository
+  git: repo="{{ git_url }}" dest="{{ app_root }}" force=yes
+
+- name: Installing python dependencies
+  pip: requirements="{{ app_root }}/requirements.txt"
+
+- name: Fixing Media location
+  lineinfile: dest="{{ app_root }}/catstricity/catstricity/settings.py" line="MEDIA_ROOT = '{{ app_root }}/catstricity/media'" regexp="^MEDIA_ROOT"
+
+- name: Running database migrations
+  shell: cd "{{ app_root }}/catstricity/" && python manage.py migrate
+  register: migration_output
+  changed_when: migration_output.stdout.find('No migrations to apply') == -1
+
+- name: Importing Cats
+  shell: cd "{{ app_root }}/catstricity/" && python manage.py initialize creates="{{ app_root }}/catstricity/media"
+
+- name: Setting correct permissions
+  file: dest="{{ app_root }}" state=directory owner=www-data recurse=yes
+
+- name: Uploading Apache config
+  template: src=catstricity.conf.j2 dest=/etc/apache2/sites-available/catstricity.conf owner=root group=root mode=0644
+  notify: Restart Apache
+
+- name: Enabling Catstricity site
+  file: src=/etc/apache2/sites-available/catstricity.conf dest=/etc/apache2/sites-enabled/catstricity.conf state=link
+  notify: Restart Apache
+
+

@@ -1,0 +1,14 @@
+---
+ansible_managed_str: "Ansible managed. All local changes will be overriden."
+git_url: "https://github.com/Captricity/catstricity.git"
+system_requirements_url: "https://raw.githubusercontent.com/Captricity/catstricity/master/requirements.system"
+app_root: /usr/src/catstricity
+base_packages_list:
+  - git
+  - python2.7
+  - apache2-mpm-prefork
+  - libapache2-mod-wsgi
+  - libjpeg-dev
+  - libjpeg8-dev
+
+

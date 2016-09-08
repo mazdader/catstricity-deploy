@@ -1,0 +1,9 @@
+---
+- hosts: all
+  user: '{{ user }}'
+  become: yes
+  roles:
+  - base_system
+  - catstricity_app
+
+
