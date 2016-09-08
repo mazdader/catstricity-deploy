@@ -65,3 +65,7 @@ $ docker run -d -p 8000:8000 --name catstricity-deploy catstricity-deploy
 ```
 
 WEB IU will be accessible at [http://localhost:8000](http://localhost:8000) URL.
+
+## WEB UI short description
+
+Clicking on server name as well as on _Run_ link immediatly starts deployment. Clicking on _View results_ link shows output of latest deployment.
