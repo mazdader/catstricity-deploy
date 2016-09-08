@@ -1,5 +1,5 @@
 # catstricity-deploy
-Django+Ansible application for catstricity deployments
+Django+Ansible application for catstricity deployments. Can be used in two ways: local installation and Docker container.
 
 ## Depoy and run local instance
 
